@@ -11,7 +11,7 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 |Insta-Ban at death | NA | 0% |
 |Fighting skills | NA | 0% |
 |Economy | NA | 0% |
-|<and more> | NA | 0% |
+|Other | NA | 0% |
     
 Progress:
 ========
