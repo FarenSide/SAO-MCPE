@@ -4,6 +4,7 @@ SAO-MCPE
 A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 
 |Things to do: | Start Date: | Percenteage finished |
+| :---: | :---: | :---:|
 |Unbreakable blocks | NA | 0% |
 |Detection skills | NA | 0% |
 |Hiding skills | NA | 0% |
