@@ -11,6 +11,8 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 |Insta-Ban at death | NA | 0% |
 |Fighting skills | NA | 0% |
 |Economy | NA | 0% |
+|Bosses<Not-Confirmed> | NA | 0% |
+|Custom Map<Not-Confirmed> | NA | 0% |
 |Other | NA | 0% |
     
 Progress:
@@ -20,6 +22,6 @@ Progress:
     
 Team:
 ====
-
--Junyi00 <me>
--Glitchmaster_PE
+->Junyi00
+->Glitchmaster_PE
+->99loenchang
