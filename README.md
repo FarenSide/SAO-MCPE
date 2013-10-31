@@ -5,14 +5,15 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 
 |Things to do: | Start Date: | Percenteage finished |
 | :---: | :---: | :---:|
-|Unbreakable blocks | NA | 0% |
+|Unplacable blocks | 31/10/2013 | 100% |
+|Unbreakable blocks | 31/10/2013 | 100% |
 |Detection skills | NA | 0% |
 |Hiding skills | NA | 0% |
-|Insta-Ban at death | NA | 0% |
+|Insta-Ban at death | 31/10/2013 | 100% |
 |Fighting skills | NA | 0% |
 |Economy | NA | 0% |
-|Bosses<Not-Confirmed> | NA | 0% |
-|Custom Map<Not-Confirmed> | NA | 0% |
+|Bosses(Not-Confirmed) | NA | 0% |
+|Custom Map(Not-Confirmed) | NA | 0% |
 |Other | NA | 0% |
     
 Progress:
