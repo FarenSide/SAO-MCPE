@@ -14,12 +14,12 @@ class SAOMCPE implements Plugin{
     private $api, $server;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
-        $this->server = ServerAPI::request();
+        $this->server = ServerAPI::request(); //why do we need this :P
     }
 
     public function init(){
-        $this->api->addHandler("player.block.touch", array($this, "preventBreakPlace"), 15);
-        $this->api->addHandler("player.death", array($this, "BanPlayer"), 15);
+        $this->api->addHandler("player.block.touch", array($this, "preventBreakPlace"), 15); 
+        $this->api->addHandler("player.death", array($this, "BanPlayer"), 15); //Banning is awesome -Junyi00
     }
 
     public function __destruct() {}
@@ -32,6 +32,7 @@ class SAOMCPE implements Plugin{
     }//I like how you guys are adding a lot of commentts, I will do the same -Glitch
 
     //What type of Economy are we trying to do? I can add my custom sign shop thingy :) -Leon
+    //Chest-Sign shop? Maybe others after i think about it -Junyi00
     
     public function BanPlayer($data, $event) {
         $username = $data['player']->username;
