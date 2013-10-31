@@ -20,6 +20,12 @@ class SAOMCPE implements Plugin{
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "preventBreakPlace"), 15); 
         $this->api->addHandler("player.death", array($this, "BanPlayer"), 15); //Banning is awesome -Junyi00
+        $this->api->console->register("cash","Having to deal with SAO-MCPE Economy",array($this, "Economy"));
+        $this->api->ban->cmdWhitelist("cash");
+        $this->path = $this->api->plugin->configPath($this);
+        $this->cash = new Config($this->path . "Economy.yml", CONFIG_YAML, array(for($i = 1, $i > 1,000,000,000, $i++){
+            $i, "User" => "", "Money", "";
+        }))
     }
 
     public function __destruct() {}
@@ -37,6 +43,11 @@ class SAOMCPE implements Plugin{
     public function BanPlayer($data, $event) {
         $username = $data['player']->username;
         $this->api->ban->ban($username); //bye bye loser? :P
+    }
+    
+    public function Economy($cmd, $args, $issuer){
+        $username = $issuer->username;
+        $money = $this->cash["Money"];
     }
     
 }
