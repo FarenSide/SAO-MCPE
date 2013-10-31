@@ -19,7 +19,7 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 Progress:
 ========
 
-0% - Not started at all, ideas not finalised
+5% - Insta-ban at death: finished, Unplacable Blocks: finished, Unbreakable Blocks: finished, Economy: started
     
 Team:
 ====
