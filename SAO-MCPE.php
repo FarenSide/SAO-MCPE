@@ -29,7 +29,7 @@ class SAOMCPE implements Plugin{
             case "break": return false; //denied
             case "place": return false; //denied
         }
-    }
+    }//I like how you guys are adding a lot of commentts, I will do the same -Glitch
     
     public function BanPlayer($data, $event) {
         $username = $data['player']->username;
