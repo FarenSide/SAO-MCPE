@@ -30,6 +30,8 @@ class SAOMCPE implements Plugin{
             case "place": return false; //denied
         }
     }//I like how you guys are adding a lot of commentts, I will do the same -Glitch
+
+    //What type of Economy are we trying to do? I can add my custom sign shop thingy :) -Leon
     
     public function BanPlayer($data, $event) {
         $username = $data['player']->username;
