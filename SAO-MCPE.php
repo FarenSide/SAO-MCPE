@@ -50,7 +50,7 @@ class SAOMCPE implements Plugin{
 
         //Removed read... Useless for now, maybe we'll need it idk
 
-        $this->DetectSkill = $this->api->plugin->readYAML($this->path . "DetectionSkill.yml");//someone forgot semicolon :P -Leon
+        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon
         
         $this->api->schedule(20* 20, array($this, "Healing"), array(), false); //20 secs to heal 1 heatlh
     }
@@ -63,23 +63,20 @@ class SAOMCPE implements Plugin{
         switch($event){
             case "player.join":
                 //Better way to write player stuff to yaml
+                //Needs to be improved
                 $target = $data->username;
                 if (!$this->cash->exists($target)) {
                     $this->cash->set($target, array('money' => self::DEFAULT_MONEY));
                     if(self::DEFAULT_MONEY !== 0){
                         $data->sendChat("[SAO]You have received self::DEFAULT_MONEY coins");
-                        //Not sure if it works
                     }
-                }
-                $this->config->save();
-                if (!$this->DetectSkills->exists($target)) {
-                    $this->DetectSkills->set($target, array('SkillLevel' => self::DEFAULT_SKILL, 'Count' => 0));
+                    $this->DetectSkill->set($target, array('SkillLevel' => self::DEFAULT_SKILL));
                     if(self::DEFAULT_SKILL !== 0){
                         $data->sendChat("[SAO]You have received self::DEFAULT_SKILL detection skill points");
-                        //Not sure if it works
                     }
                 }
-                $this->config->save();
+                $this->DetectSkill->save();
+                $this->cash->save();
                 break;
             case "money.player.get":
                 //Gets the money of a player for the prefix
