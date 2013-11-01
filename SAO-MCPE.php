@@ -52,7 +52,7 @@ class SAOMCPE implements Plugin{
 
         $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon
         
-        $this->api->schedule(20* 20, array($this, "Healing"), array(), false); //20 secs to heal 1 heatlh
+        $this->api->schedule(20* 20, array($this, "Healing"), array(), true); //20 secs to heal 1 heatlh, true->(repeat)
     }
     //Shouldn't we be using storing data using SQL? There are othe stuffs to store too, afraid sing so much yaml would lag the server-Junyi00
     //SQL is actually not a very good protocol. It is better than YAML, but if we can create a good YAML file, or a file for each player, the lag will be virtually nonexistent -Leon
