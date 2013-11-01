@@ -7,8 +7,9 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 | :---: | :---: | :---:|
 |Unplacable blocks | 10/31/2013 | 100% |
 |Unbreakable blocks | 10/31/2013 | 100% |
-|Detection skills | NA | 0% |
+|Detection skills | 11/1/2013 | 10% |
 |Hiding skills | NA | 0% |
+|Healing | NA | 0% |
 |Insta-Ban at death | 10/31/2013 | 100% |
 |Fighting skills | NA | 0% |
 |Economy | 10/31/2013 | 10% |
