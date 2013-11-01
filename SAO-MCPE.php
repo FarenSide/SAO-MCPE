@@ -16,6 +16,7 @@ class SAOMCPE implements Plugin{
         $this->api = $api;
         $this->server = ServerAPI::request(); //why do we need this :P
         //Its needed
+        //hexdro just contributed :P
     }
 
     public function init(){
