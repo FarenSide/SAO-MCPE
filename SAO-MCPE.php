@@ -47,9 +47,9 @@ class SAOMCPE implements Plugin{
         */
         //This is an illegal piece of code i think and will result in a parsing error. I have used a different method --Leon
         //Same as what i use with my plugins, idk how the above code works at all
-        $this->cash = $this->api->plugin->readYAML($this->path . "Economy.yml");//Makes it read YAML :P
 
-        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);
+        //Removed read... Useless for now, maybe we'll need it idk
+
         $this->DetectSkill = $this->api->plugin->readYAML($this->path . "DetectionSkill.yml");//someone forgot semicolon :P -Leon
         
         $this->api->schedule(20* 20, array($this, "Healing"), array(), false); //20 secs to heal 1 heatlh
@@ -81,6 +81,12 @@ class SAOMCPE implements Plugin{
                 }
                 $this->config->save();
                 break;
+            case "money.player.get":
+                //Gets the money of a player for the prefix
+                if ($this->cash->exists($data['username'])) {
+                    return $this->cash->get($data['username'])['money'];
+                }
+                return false;
         }
     }
 
