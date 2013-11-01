@@ -13,7 +13,7 @@ apiversion=10
 class SAOMCPE implements Plugin{
     private $api, $server;
     const DEFAULT_MONEY = 0;
-    const DEFAULT_SKILL = 0;
+    const DEFAULT_SKILL = 1;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
         $this->server = ServerAPI::request(); //why do we need this :P
@@ -30,7 +30,7 @@ class SAOMCPE implements Plugin{
         $this->api->addHandler("player.join", array($this, "register")); //Adds the player stuff to the config files
         $this->api->addHandler("money.player.get", array($this, "register")); //API to get player money
 
-        $this->api->addHandler("player.block.touch", array($this, "storeManager"));
+        $this->api->addHandler("player.block.touch", array($this, "storeManager")); //what about the above code ^ -Junyi00
         $this->api->addHandler("tile.update", array($this, "storeManager"));
         //This code is from my server and I really want it to be kept secret but oh well :/ -Leon
         
@@ -46,14 +46,10 @@ class SAOMCPE implements Plugin{
         }) //don't understand how the loop will work O.o
         */
         //This is an illegal piece of code i think and will result in a parsing error. I have used a different method --Leon
+        //Same as what i use with my plugins, idk how the above code works at all
         $this->cash = $this->api->plugin->readYAML($this->path . "Economy.yml");//Makes it read YAML :P
 
         $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);
-        /*
-        $this->DetectSkill = new Config($this->path . "DetectionSkill.yml", CONFIG_YAML, for($i = 1, $i < 1,000,000,000, $i++){
-            $i, "User" => "", "SkillLevel", "";//this config should do a for loop for each new member that joins -Glitch
-        })
-        */
         $this->DetectSkill = $this->api->plugin->readYAML($this->path . "DetectionSkill.yml");//someone forgot semicolon :P -Leon
         
         $this->api->schedule(20* 20, array($this, "Healing"), array(), false); //20 secs to heal 1 heatlh
@@ -77,9 +73,9 @@ class SAOMCPE implements Plugin{
                 }
                 $this->config->save();
                 if (!$this->DetectSkills->exists($target)) {
-                    $this->DetectSkills->set($target, array('SkillLevel' => self::DEFAULT_SKILL));
+                    $this->DetectSkills->set($target, array('SkillLevel' => self::DEFAULT_SKILL, 'Count' => 0));
                     if(self::DEFAULT_SKILL !== 0){
-                        $data->sendChat("[SAO]You have received self::DEFAULT_SKILL skill");
+                        $data->sendChat("[SAO]You have received self::DEFAULT_SKILL detection skill points");
                         //Not sure if it works
                     }
                 }
