@@ -15,10 +15,12 @@ class SAOMCPE implements Plugin{
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
         $this->server = ServerAPI::request(); //why do we need this :P
+        //Its needed
     }
 
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "preventBreakPlace"), 15); 
+        //Getting ready for the player.block.touch -Leon
         $this->api->addHandler("player.death", array($this, "BanPlayer"), 15); //Banning is awesome -Junyi00
         $this->api->console->register("cash","Having to deal with SAO-MCPE Economy",array($this, "Economy"));
         $this->api->ban->cmdWhitelist("cash");
