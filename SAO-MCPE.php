@@ -521,10 +521,10 @@ class SAOMCPE implements Plugin{
     );
     
     private $detectSkill = array(
-        1 => 5,
-        2 => 7,
-        3 => 9,
-        4 => 12,
+        1 => 3,
+        2 => 5,
+        3 => 8,
+        4 => 11,
         5 => 15 //15 blocks + detect hiding players
     );
     
