@@ -53,7 +53,8 @@ class SAOMCPE implements Plugin{
     }
     //Shouldn't we be using storing data using SQL? There are othe stuffs to store too, afraid sing so much yaml would lag the server-Junyi00
     //SQL is actually not a very good protocol. It is better than YAML, but if we can create a good YAML file, or a file for each player, the lag will be virtually nonexistent -Leon
-
+	$this->pvp = new Config($this->path . "PvP.yml", CONFIG_YAML, array("PvP_Default (is PvP enabled or disabled by default)" => "Enabled", "Areas" => array()));
+    	$this->pvp = $this->api->plugin->readYAML($this->path . "PvP.yml");//Got started on PvP -Glitch
     public function __destruct() {}
 
     public function register($data,$event){
