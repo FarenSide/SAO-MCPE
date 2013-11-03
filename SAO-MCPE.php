@@ -117,6 +117,7 @@ class SAOMCPE implements Plugin{
             $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => true);
             $issuer->sendChat("Detection Skill enabled!");
         }
+        $this->DetectSkill->save();
     } //flip boolean
     
     private function FindNearbyPlayers($name, $player2) {
