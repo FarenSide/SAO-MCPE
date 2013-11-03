@@ -167,7 +167,7 @@ class SAOMCPE implements Plugin{
 				$copy = $py;
 			}
     	}
-    } //Done detect skill for now?? Someone test for me plz, my server is spoiled; From line 109 - 166; -Junyi00
+    //Done detect skill for now?? Someone test for me plz, my server is spoiled; From line 109 - 166; -Junyi00
     //Once i fully implement hiding skill, i can then complete this. Current code should work though -Junyi00
     
     public function Healing() {
