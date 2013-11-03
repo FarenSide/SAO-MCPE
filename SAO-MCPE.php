@@ -174,8 +174,8 @@ class SAOMCPE implements Plugin{
         $players = $this->api->player->online();
         for($i=0;$i<count($players);$i++) {
             $player = $this->api->player->get($players[$i]);
-            if ($player->getHealth() != 20) { 
-                $player->setHealth($player->getHealth()+1, "Healing"); //heal 1 health
+            if ($player->entity->getHealth() != 20) { 
+                $player->entity->setHealth($player->entity->getHealth()+1, "Healing"); //heal 1 health
             }
         }
     } //Done? Someone test for me plz :P -Junyi00
