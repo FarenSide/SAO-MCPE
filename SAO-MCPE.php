@@ -49,8 +49,10 @@ class SAOMCPE implements Plugin{
         //Same as what i use with my plugins, idk how the above code works at all
 
         //Removed read... Useless for now, maybe we'll need it idk
-
-        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon
+        $this->api->console->register("detect","Turn on/off being able to detect in-coming players",array($this, "detectSwitch"));
+        $this->api->ban->cmdWhitelist("detect");
+        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon //me XD -Junyi00
+        $this->api->schedule(20* 4, array($this, "CheckNearby"), array(), true); //11/3/2013, i will start on it now -Junyi00
         
         $this->api->schedule(20* 20, array($this, "Healing"), array(), true); //20 secs to heal 1 heatlh, true->(repeat)
     }
@@ -70,7 +72,7 @@ class SAOMCPE implements Plugin{
                     if(self::DEFAULT_MONEY !== 0){
                         $data->sendChat("[SAO]You have received self::DEFAULT_MONEY coins");
                     }
-                    $this->DetectSkill->set($target, array('SkillLevel' => self::DEFAULT_SKILL));
+                    $this->DetectSkill->set($target, array('SkillLevel' => self::DEFAULT_SKILL, "On/Off" => "Off"));
                     if(self::DEFAULT_SKILL !== 0){
                         $data->sendChat("[SAO]You have received self::DEFAULT_SKILL detection skill points");
                     }
@@ -103,6 +105,66 @@ class SAOMCPE implements Plugin{
         $username = $issuer->username;
         $money = $this->cash["Money"];//this is incomplete, I will keep working on it in a bit -Glitch
     }
+    
+    public function detectSwitch($cmd, $arg, $issuer) {
+        $username = $issuer->username;
+        $data = $this->DetectSkill->get($username);
+        if ($data['On/Off'] == true) {
+            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => false);
+        }
+        else {
+            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => true);
+        }
+    } //flip boolean
+    
+    private function FindNearbyPlayers($name, $player2) {
+        $player = $this->api->player->get($name);
+        if($this->DetectSkill->get($name)["On/Off"] == "On"){
+			$Pdetect = 0;
+			$Pdetecthide = false;
+			$Pdetectskill = $this->DetectSkill->get($name)["SkillLevel"];
+			    switch($Pdetectskill) {
+					 case 1: 
+					 case 2:
+					 case 3:
+					 case 4: 
+					     $Pdetect = $detectSkill[$Pdetectskill];
+					     $Pdetecthide = false;
+					     break;
+					 case 5:
+					     $Pdetect = $detectSkill[5];
+					     $Pdetecthide = true;
+					     break;
+			}
+		if ($Pdetect >= $range) $player->sendChat($player2." is ".round($range)." blocks away from u");
+		}
+    }
+    
+    public function CheckNearby() {
+        $py = $this->api->player->online();
+		$copy = $py;
+		if (count($py) > 1) { //at least 2 players in server
+			for($i=0;$i<count($py);$i++) {
+				if ($i == (count($py)-1)) break;
+				
+				$p1 = $this->api->player->get($py[$i]);
+				array_shift($copy); //remove the $p1 from the second array
+				for($e=0;$e<count($copy);$e++) {
+					$p2 = $this->api->player->get($copy[$e]);
+					
+					$p1vec = new Vector3($p1->entity->x, $p1->entity->y, $p1->entity->z); 
+					$p2vec = new Vector3($p2->entity->x, $p2->entity->y, $p2->entity->z);
+					
+					$range = round($p1vec->distance($p2vec)); //the number of blocks away from each other
+					
+					$this->FindNearbyPlayers($p1->username, $p2->username);
+					$this->FindNearbyPlayers($p2->username, $p1->username); //guys, my mind messed up here, help me see if im dong the correc tthings here -Junyi00
+				}
+			}
+			$copy = $py;
+		} 
+    } //Done detect skill for now?? Someone test for me plz, my server is spoiled; From line 109 - 166; -Junyi00
+    //Once i fully implement hiding skill, i can then complete this. Current code should work though
     
     public function Healing() {
         $players = $this->api->player->online();
@@ -452,6 +514,14 @@ class SAOMCPE implements Plugin{
         366 => "cookedchicken",
         405 => "netherbrick",
         456 => "camera"
+    );
+    
+    private $detectSkill = array(
+        1 => 5,
+        2 => 7,
+        3 => 9,
+        4 => 12,
+        5 => 15 //15 blocks + detect hiding players
     );
     
 }
