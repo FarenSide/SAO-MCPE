@@ -110,11 +110,11 @@ class SAOMCPE implements Plugin{
         $username = $issuer->username;
         $data = $this->DetectSkill->get($username);
         if ($data['On/Off'] == true) {
-            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => false);
+            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel'], "On/Off" => false));
             $issuer->sendChat("Detection Skill disabled!");
         }
         else {
-            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => true);
+            $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel'], "On/Off" => true));
             $issuer->sendChat("Detection Skill enabled!");
         }
         $this->DetectSkill->save();
