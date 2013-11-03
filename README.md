@@ -12,7 +12,7 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 |Healing | 11/1/2013 | 11/1/2013 | 100% |
 |Insta-Ban at death | 10/31/2013 | 10/31/2013 | 100% |
 |Fighting skills | NA | NA | 0% |
-|Economy | 10/31/2013 | NA | 10% |
+|Economy | 10/31/2013 | NA | 30% |
 |Safe and PVP area | NA | NA | 0% |
 |Teleportation crystals(Not-Confirmed) | NA | NA | 0% |
 |Bosses(Not-Confirmed) | NA | NA | 0% |
