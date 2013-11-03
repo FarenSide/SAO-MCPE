@@ -111,9 +111,11 @@ class SAOMCPE implements Plugin{
         $data = $this->DetectSkill->get($username);
         if ($data['On/Off'] == true) {
             $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => false);
+            $issuer->sendChat("Detection Skill disabled!");
         }
         else {
             $this->DetectSkill->set($username, array("SkillLevel" => $data['SkillLevel']), "On/Off" => true);
+            $issuer->sendChat("Detection Skill enabled!");
         }
     } //flip boolean
     
@@ -147,24 +149,25 @@ class SAOMCPE implements Plugin{
 			for($i=0;$i<count($py);$i++) {
 				if ($i == (count($py)-1)) break;
 				
-				$p1 = $this->api->player->get($py[$i]);
-				array_shift($copy); //remove the $p1 from the second array
-				for($e=0;$e<count($copy);$e++) {
-					$p2 = $this->api->player->get($copy[$e]);
+					$p1 = $this->api->player->get($py[$i]);
+					array_shift($copy); //remove the $p1 from the second array
+					for($e=0;$e<count($copy);$e++) {
+						$p2 = $this->api->player->get($copy[$e]);
 					
-					$p1vec = new Vector3($p1->entity->x, $p1->entity->y, $p1->entity->z); 
-					$p2vec = new Vector3($p2->entity->x, $p2->entity->y, $p2->entity->z);
+						$p1vec = new Vector3($p1->entity->x, $p1->entity->y, $p1->entity->z); 
+						$p2vec = new Vector3($p2->entity->x, $p2->entity->y, $p2->entity->z);
 					
-					$range = round($p1vec->distance($p2vec)); //the number of blocks away from each other
+						$range = round($p1vec->distance($p2vec)); //the number of blocks away from each other
 					
-					$this->FindNearbyPlayers($p1->username, $p2->username);
-					$this->FindNearbyPlayers($p2->username, $p1->username); //guys, my mind messed up here, help me see if im dong the correc tthings here -Junyi00
+						$this->FindNearbyPlayers($p1->username, $p2->username);
+						$this->FindNearbyPlayers($p2->username, $p1->username); //guys, my mind messed up here, help me see if im dong the correc tthings here -Junyi00
+					}
 				}
+				$copy = $py;
 			}
-			$copy = $py;
-		} 
+    	}
     } //Done detect skill for now?? Someone test for me plz, my server is spoiled; From line 109 - 166; -Junyi00
-    //Once i fully implement hiding skill, i can then complete this. Current code should work though
+    //Once i fully implement hiding skill, i can then complete this. Current code should work though -Junyi00
     
     public function Healing() {
         $players = $this->api->player->online();
