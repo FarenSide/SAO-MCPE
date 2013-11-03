@@ -172,7 +172,7 @@ class SAOMCPE implements Plugin{
     
     public function Healing() {
         $players = $this->api->player->online();
-        for($i=1;$i<count($players);$i++) {
+        for($i=0;$i<count($players);$i++) {
             $player = $this->api->player->get($players[$i]);
             if ($player->getHealth() != 20) { 
                 $player->setHealth($player->getHealth()+1, "Healing"); //heal 1 health
