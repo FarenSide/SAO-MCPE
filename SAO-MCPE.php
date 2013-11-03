@@ -39,16 +39,11 @@ class SAOMCPE implements Plugin{
         
         $this->path = $this->api->plugin->configPath($this);
 
-        $this->cash = new Config($this->api->plugin->configPath($this)."Economy.yml", CONFIG_YAML);
-        /*
-        $this->cash = new Config($this->path . "Economy.yml", CONFIG_YAML, for($i = 1, $i < 1,000,000,000, $i++){
-            $i, "User" => "", "Money", "";//this config should do a for loop for each new member that joins -Glitch
-        }) //don't understand how the loop will work O.o
-        */
-        //This is an illegal piece of code i think and will result in a parsing error. I have used a different method --Leon
-        //Same as what i use with my plugins, idk how the above code works at all
-
+        $this->cash = new Config($this->path . "Economy.yml", CONFIG_YAML, array(
+            "User" => array("Name" => "", "Money" => "")));//this config should do a for loop for each new member that joins -Glitch
+        //fixed it -Glitch
         //Removed read... Useless for now, maybe we'll need it idk
+        $this->cash = $this->api->plugin->readYAML($this->path . "Economy.yml");
         $this->api->console->register("detect","Turn on/off being able to detect in-coming players",array($this, "detectSwitch"));
         $this->api->ban->cmdWhitelist("detect");
         $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon //me XD -Junyi00
@@ -103,7 +98,21 @@ class SAOMCPE implements Plugin{
     
     public function Economy($cmd, $args, $issuer){
         $username = $issuer->username;
-        $money = $this->cash["Money"];//this is incomplete, I will keep working on it in a bit -Glitch
+        $money = $this->cash["Money"];
+        switch($args[0]){
+        	case "get":
+        		$issuer->sendChat($this->cash[]);
+        		break;
+        	case "gift":
+        		$target = $args[1];
+        		$player = $this->api->player->get($target);
+        		if($player === false){
+        			return false;
+        		}
+        		else{
+        			//to be continued -Glitch
+        		}
+        }
     }
     
     public function detectSwitch($cmd, $arg, $issuer) {
