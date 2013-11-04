@@ -16,10 +16,7 @@ class SAOMCPE implements Plugin{
     const DEFAULT_SKILL = 1;
     public function __construct(ServerAPI $api, $server = false){
         $this->api = $api;
-        $this->server = ServerAPI::request(); //why do we need this :P
-        //Its needed
-        //hexdro just contributed :P
-        //?? -Leon
+        $this->server = ServerAPI::request();
     }
 
     public function init(){
@@ -90,7 +87,7 @@ class SAOMCPE implements Plugin{
             case "break": return false; //denied
             case "place": return false; //denied
         }
-    }//I like how you guys are adding a lot of commentts, I will do the same -Glitch
+    }
     
     public function BanPlayer($data, $event) {
         $username = $data['player']->username;
@@ -99,10 +96,11 @@ class SAOMCPE implements Plugin{
     
     public function Economy($cmd, $args, $issuer){
         $username = $issuer->username;
-        $money = $this->cash["Money"];
+        $money = $this->cash->get($username)['money'];
         switch($args[0]){
         	case "get":
-        		$issuer->sendChat($this->cash[]);
+        		$issuer->sendChat($money);
+        		//Not sure if supposed to be like this? --Leon
         		break;
         	case "gift":
         		$target = $args[1];
@@ -111,6 +109,21 @@ class SAOMCPE implements Plugin{
         			return false;
         		}
         		else{
+        			$amount = $args[2];
+        			if($money<$amount){
+        				$issuer->sendChat("[SAO]You don't have enough money to gift ".$target);
+        			}
+        			else {
+        				$targetmoney = $this->cash->get($target)['money'];
+        				$newamount = $money - $amount;
+        				$giftedamount = $targetmoney + $targetmoney;
+        				$this->cash->set($username, array('money' => $newamount));
+        				$this->cash->set($target, array('money' => $giftedamount));
+                                        $this->cash->save();
+                                        $this->api->chat->sendTo(false, "[SAO]You have gifted $target $amount coins!", $username);
+                                        $this->api->chat->sendTo(false, "[SAO]$username has gifted you $amount coins!", $target);
+        				//I think you wanted it like this? -Leon
+        			}
         			//to be continued -Glitch
         		}
         }
@@ -190,10 +203,8 @@ class SAOMCPE implements Plugin{
         }
     } //Done? Someone test for me plz :P -Junyi00
 
-    //Below is my awesome store thingy, it also only allows admins to create shops
-    //This also means that permissions plus is a necessity
-    //Even comes with a VIP thingy
-    // --Leon
+    //Stores currently don't work, I'm using the wrong YAML file -Leon
+    // I will fix later, after my exams tommorrow
     public function countItemInventory($player, $type){
         //Checks if player has enough of an item/block
         $count = 0;
