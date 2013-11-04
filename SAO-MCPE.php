@@ -120,9 +120,10 @@ class SAOMCPE implements Plugin{
         				$this->cash->set($username, array('money' => $newamount));
         				$this->cash->set($target, array('money' => $giftedamount));
                                         $this->cash->save();
-                                        $this->api->chat->sendTo(false, "[SAO]You have gifted $target $amount coins!", $username);
-                                        $this->api->chat->sendTo(false, "[SAO]$username has gifted you $amount coins!", $target);
+                                        $this->api->chat->sendTo(false, "[SAO]You have gifted $target $giftamount coins!", $username);
+                                        $this->api->chat->sendTo(false, "[SAO]$username has gifted you $giftamount coins!", $target);
         				//I think you wanted it like this? -Leon
+        				//$issuer->sendChat(); works the same but it's shorter -Glitch
         			}
         			//to be continued -Glitch
         		}
