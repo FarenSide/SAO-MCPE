@@ -124,6 +124,7 @@ class SAOMCPE implements Plugin{
                                         $this->api->chat->sendTo(false, "[SAO]$username has gifted you $giftamount coins!", $target);
         				//I think you wanted it like this? -Leon
         				//$issuer->sendChat(); works the same but it's shorter -Glitch
+                                        //yeah good point, I'm used to sendTo XD -Leon 
         			}
         			//to be continued -Glitch
         		}
@@ -159,7 +160,7 @@ class SAOMCPE implements Plugin{
 					     $Pdetecthide = false;
 					     break;
 					 case 5:
-					     $Pdetect = $detectSkill[5];
+				             $Pdetect = $detectSkill[5];
 					     $Pdetecthide = true;
 					     break;
 			}
