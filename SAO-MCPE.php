@@ -207,6 +207,7 @@ class SAOMCPE implements Plugin{
 
     //Stores currently don't work, I'm using the wrong YAML file -Leon
     // I will fix later, after my exams tommorrow
+    //Ok Finished Exams and fixed xD
     public function countItemInventory($player, $type){
         //Checks if player has enough of an item/block
         $count = 0;
@@ -286,15 +287,15 @@ class SAOMCPE implements Plugin{
                                         return false;
                                     }
                                     else {
-                                        $money = $this->config->get($usrname)['money'];
+                                        $money = $this->cash->get($usrname)['money'];
                                         if ($money < $cost) {
                                             $this->api->chat->sendTo(false, "[SAO]You don't have enough coins!", $usrname);
                                         }
                                         else {
                                             $leftovermoney = $this->config->get($usrname)['money'] - $cost;
-                                            $this->config->set($usrname, array('money' => $leftovermoney));
+                                            $this->cash->set($usrname, array('money' => $leftovermoney));
                                             $this -> api -> console -> run("give " . $usrname . " " . $item." ".$amount);
-                                            $this->config->save();
+                                            $this->cash->save();
                                             $this->api->chat->sendTo(false, "[SAO]You just bought $amount $item!", $usrname);
                                         }
                                     }
@@ -305,15 +306,15 @@ class SAOMCPE implements Plugin{
                                     $cost = $tile->data['Text4'];
                                     $item = $tile->data['Text2'];
                                     $amount = $tile->data['Text3'];
-                                    $money = $this->config->get($usrname)['money'];
+                                    $money = $this->cash->get($usrname)['money'];
                                     if ($money < $cost) {
                                         $this->api->chat->sendTo(false, "[SAO]You don't have enough coins!", $usrname);
                                     }
                                     else {
                                         $leftovermoney = $this->config->get($usrname)['money'] - $cost;
-                                        $this->config->set($usrname, array('money' => $leftovermoney));
+                                        $this->cash->set($usrname, array('money' => $leftovermoney));
                                         $this -> api -> console -> run("give " . $usrname . " " . $item." ".$amount);
-                                        $this->config->save();
+                                        $this->cash->save();
                                         $this->api->chat->sendTo(false, "[SAO]You just bought $amount $item!", $usrname);
                                     }
                                 }
@@ -333,9 +334,9 @@ class SAOMCPE implements Plugin{
                                     else {
                                         $damage = 0;
                                         $extramoney = $this->config->get($usrname)['money'] + $cost;
-                                        $this->config->set($usrname, array('money' => $extramoney));
+                                        $this->cash->set($usrname, array('money' => $extramoney));
                                         $player->removeItem($item, $damage, $amount, $send = true);
-                                        $this->config->save();
+                                        $this->cash->save();
                                         $this->api->chat->sendTo(false, "[SAO]You just sold $amount of $itemtype!", $usrname);
                                         $this->api->chat->sendTo(false, "[SAO]You just received $cost coins!", $usrname);
                                     }
