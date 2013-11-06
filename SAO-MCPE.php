@@ -57,6 +57,8 @@ class SAOMCPE implements Plugin{
 
     public function register($data,$event){
         switch($event){
+        	//Temporarily removing this block of code, seeing if Glitch's method works -Leon
+        	/*
             case "player.join":
                 //Better way to write player stuff to yaml
                 //Needs to be improved
@@ -74,6 +76,7 @@ class SAOMCPE implements Plugin{
                 $this->DetectSkill->save();
                 $this->cash->save();
                 break;
+            	*/
             case "money.player.get":
                 //Gets the money of a player for the prefix
                 if ($this->cash->exists($data['username'])) {
@@ -206,8 +209,6 @@ class SAOMCPE implements Plugin{
         }
     } //Done? Someone test for me plz :P -Junyi00
 
-    //Stores currently don't work, I'm using the wrong YAML file -Leon
-    // I will fix later, after my exams tommorrow
     //Ok Finished Exams and fixed xD
     public function countItemInventory($player, $type){
         //Checks if player has enough of an item/block
