@@ -83,6 +83,7 @@ class SAOMCPE implements Plugin{
                         $data->sendChat("[SAO]You have received self::DEFAULT_SKILL fighting skill points");
                     }
                 }
+                $this->FightingSkill->save();
                 $this->DetectSkill->save();
                 $this->cash->save();
                 break;
