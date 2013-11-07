@@ -43,13 +43,19 @@ class SAOMCPE implements Plugin{
         $this->pvp = $this->api->plugin->readYAML($this->path . "PvP.yml");//Got started on PvP -Glitch
         //Moved PvP into the init -Leon
         //Removed read... Useless for now, maybe we'll need it idk
-        $this->cash = $this->api->plugin->readYAML($this->path . "Economy.yml");
+        
+        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon //me XD -Junyi00
+        $this->DetectSkill = $this->api->plugin->readYAML($this->path . "DetectSkill.yml");
         $this->api->console->register("detect","Turn on/off being able to detect in-coming players",array($this, "detectSwitch"));
         $this->api->ban->cmdWhitelist("detect");
-        $this->DetectSkill = new Config($this->api->plugin->configPath($this)."DetectionSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon //me XD -Junyi00
-        $this->api->schedule(20* 4, array($this, "CheckNearby"), array(), true); //11/3/2013, i will start on it now -Junyi00
+        
+        $this->FightingSkill = new Config($this->api->plugin->configPath($this)."FightingSkill.yml", CONFIG_YAML);//someone forgot semicolon :P -Leon //me XD -Junyi00
+        $this->FightingSkill = $this->api->plugin->readYAML($this->path . "FightingSkill.yml");
+        
+        $this->api->schedule(20* 4, array($this, "CheckNearby"), array(), true); 
         
         $this->api->schedule(20* 20, array($this, "Healing"), array(), true); //20 secs to heal 1 heatlh, true->(repeat)
+        
     }
     //Shouldn't we be using storing data using SQL? There are othe stuffs to store too, afraid sing so much yaml would lag the server-Junyi00
     //SQL is actually not a very good protocol. It is better than YAML, but if we can create a good YAML file, or a file for each player, the lag will be virtually nonexistent -Leon
@@ -71,6 +77,10 @@ class SAOMCPE implements Plugin{
                     $this->DetectSkill->set($target, array('SkillLevel' => self::DEFAULT_SKILL, "On/Off" => "Off"));
                     if(self::DEFAULT_SKILL !== 0){
                         $data->sendChat("[SAO]You have received self::DEFAULT_SKILL detection skill points");
+                    }
+                    $this->FightingSkill->set($target, array("SkillLevel" => self::DEFAULT_SKILL));
+                    if(self::DEFAULT_SKILL !== 0){
+                        $data->sendChat("[SAO]You have received self::DEFAULT_SKILL fighting skill points");
                     }
                 }
                 $this->DetectSkill->save();
