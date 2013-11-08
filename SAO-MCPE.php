@@ -66,6 +66,7 @@ class SAOMCPE implements Plugin{
         	//Temporarily removing this block of code, seeing if Glitch's method works -Leon
         	//What method do I have? -Glitch
         	//The loop you made? -Leon
+            //That works right? -Leon
         	/*
             case "player.join":
                 //Better way to write player stuff to yaml
