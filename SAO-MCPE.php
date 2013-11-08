@@ -64,6 +64,7 @@ class SAOMCPE implements Plugin{
     public function register($data,$event){
         switch($event){
         	//Temporarily removing this block of code, seeing if Glitch's method works -Leon
+        	//What method do I have? -Glitch
         	/*
             case "player.join":
                 //Better way to write player stuff to yaml
