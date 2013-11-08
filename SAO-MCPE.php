@@ -67,6 +67,7 @@ class SAOMCPE implements Plugin{
         	//What method do I have? -Glitch
         	//The loop you made? -Leon
             //That works right? -Leon
+            //No, that is why it was removed, I have never worked with unlimited configs before so I was goofing around and seeing what might work -Glitch
         	/*
             case "player.join":
                 //Better way to write player stuff to yaml
