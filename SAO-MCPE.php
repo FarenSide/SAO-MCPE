@@ -65,6 +65,7 @@ class SAOMCPE implements Plugin{
         switch($event){
         	//Temporarily removing this block of code, seeing if Glitch's method works -Leon
         	//What method do I have? -Glitch
+        	//The loop you made? -Leon
         	/*
             case "player.join":
                 //Better way to write player stuff to yaml
