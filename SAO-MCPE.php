@@ -68,7 +68,7 @@ class SAOMCPE implements Plugin{
         	//The loop you made? -Leon
             //That works right? -Leon
             //No, that is why it was removed, I have never worked with unlimited configs before so I was goofing around and seeing what might work -Glitch
-        	/*
+        	//Ok makes sense -Leon
             case "player.join":
                 //Better way to write player stuff to yaml
                 //Needs to be improved
@@ -91,7 +91,6 @@ class SAOMCPE implements Plugin{
                 $this->DetectSkill->save();
                 $this->cash->save();
                 break;
-            	*/
             case "money.player.get":
                 //Gets the money of a player for the prefix
                 if ($this->cash->exists($data['username'])) {
