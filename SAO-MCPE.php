@@ -21,7 +21,7 @@ class SAOMCPE implements Plugin{
 
     public function init(){
         $this->api->addHandler("player.block.touch", array($this, "preventBreakPlace"), 15);
-        
+
         $this->api->addHandler("player.death", array($this, "BanPlayer"), 15); //Banning is awesome -Junyi00
 
         $this->api->addHandler("player.join", array($this, "register")); //Adds the player stuff to the config files
@@ -30,7 +30,7 @@ class SAOMCPE implements Plugin{
         $this->api->addHandler("player.block.touch", array($this, "storeManager")); //what about the above code ^ -Junyi00
         $this->api->addHandler("tile.update", array($this, "storeManager"));
         //This code is from my server and I really want it to be kept secret but oh well :/ -Leon
-        
+
         $this->api->console->register("cash","Having to deal with SAO-MCPE Economy",array($this, "Economy"));
         $this->api->ban->cmdWhitelist("cash");
         
