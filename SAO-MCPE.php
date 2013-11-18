@@ -94,7 +94,7 @@ class SAOMCPE implements Plugin{
             case "money.player.get":
                 //Gets the money of a player for the prefix
                 if ($this->cash->exists($data['username'])) {
-                    return $this->cash->get($data['username'])['money'];
+                    return $this->cash->get($data['username'])['money']);
                 }
                 return false;
         }
