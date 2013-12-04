@@ -5,7 +5,7 @@ __PocketMine Plugin__
 name=SAO-MCPE
 description=SAO kind of environment in PocketMine server!
 version=1.0
-author=Junyi00, Glitchmaster_PE, 99leonchang, hexdro
+author=Junyi00, Glitchmaster_PE, 99leonchang, hexdro, Syriamanal
 class=SAOMCPE
 apiversion=10
 */
@@ -138,7 +138,7 @@ class SAOMCPE implements Plugin{
         				$this->cash->set($username, array('money' => $newamount));
         				$this->cash->set($target, array('money' => $giftedamount));
                                         $this->cash->save();
-                                        $this->api->chat->sendTo(false, "[SAO]You have gifted $target $giftamount coins!", $username);
+                                        $this->api->chat->sendTo(false, "[SAO]You have gifted $target $giftamount coins!", $username);//Improper useage of words -_- -Syriamanal
                                         $this->api->chat->sendTo(false, "[SAO]$username has gifted you $giftamount coins!", $target);
         				//I think you wanted it like this? -Leon
         				//$issuer->sendChat(); works the same but it's shorter -Glitch
@@ -254,7 +254,7 @@ class SAOMCPE implements Plugin{
                     if ($data->data['Text1'] == "[SHOP]"){
                         if ($user_permission !== "ADMIN") {
                             $data->data['Text1'] = "[BROKEN]";
-                            $this->api->chat->sendTo(false, "[SAO]Only admins can create shops!", $usrname);
+                            $this->api->chat->sendTo(false, "[SAO]Only admins can create shops!/n", $usrname);// Added grey text -Syriamanal
                             return false;
                         }
                         else{
@@ -264,7 +264,7 @@ class SAOMCPE implements Plugin{
                     if ($data->data['Text1'] == "[SELL]"){
                         if ($user_permission !== "ADMIN") {
                             $data->data['Text1'] = "[BROKEN]";
-                            $this->api->chat->sendTo(false, "[SAO]Only admins can create shops!", $usrname);
+                            $this->api->chat->sendTo(false, "[SAO]Only admins can create shops!/n", $usrname);//Added grey text -Syriamanal
                             return false;
                         }
                         else{
@@ -275,7 +275,7 @@ class SAOMCPE implements Plugin{
                         //This only works with my multiworld portal plugin -Leon
                         if ($user_permission !== "ADMIN") {
                             $data->data['Text1'] = "[BROKEN]";
-                            $this->api->chat->sendTo(false, "[SAO]Only admins can create portals!", $usrname);
+                            $this->api->chat->sendTo(false, "[SAO]Only admins can create portals!/n", $usrname);//Added grey text -Syriamanal
                             return false;
                         }
                         else{
@@ -299,13 +299,13 @@ class SAOMCPE implements Plugin{
                                     $item = $tile->data['Text2'];
                                     $amount = $tile->data['Text3'];
                                     if ($user_permission != "VIP") {
-                                        $this->api->chat->sendTo(false, "[SAO]You are not VIP!", $usrname);
+                                        $this->api->chat->sendTo(false, "[SAO]You are not VIP!/n", $usrname);Added grey text -Syriamanal
                                         return false;
                                     }
                                     else {
                                         $money = $this->cash->get($usrname)['money'];
                                         if ($money < $cost) {
-                                            $this->api->chat->sendTo(false, "[SAO]You don't have enough coins!", $usrname);
+                                            $this->api->chat->sendTo(false, "[SAO]You don't have enough coins!/n", $usrname);
                                         }
                                         else {
                                             $leftovermoney = $this->config->get($usrname)['money'] - $cost;
@@ -569,3 +569,4 @@ class SAOMCPE implements Plugin{
     );
     
 }
+?>// code Your Tags for a morestable plugin -Syriamanal
