@@ -17,6 +17,7 @@ A PocketMine Plugin- Having a SAO kind of gaming style in MCPE server
 |Teleportation crystals(Not-Confirmed) | NA | NA | 0% |
 |Bosses(Not-Confirmed) | NA | NA | 0% |
 |Custom Map(Not-Confirmed) | NA | NA | 0% |
+|Golden Apple| NA | NA | 0% |
 |Other | NA | NA | 0% |
     
 Progress:
@@ -37,3 +38,4 @@ Team:
 ->Glitchmaster_PE     
 ->99leonchang       
 ->Hexdro
+->Syriamanal
